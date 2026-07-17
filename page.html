@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanshika Dhawan — Full-Stack & Cloud Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --bg-raised: #FFFFFF;
+    --ink: #14151A;
+    --ink-soft: #4B4D57;
+    --line: #E4E3DD;
+    --accent: #3D5AFE;
+    --accent-soft: #EEF0FF;
+    --live: #17A673;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  ::selection{ background:var(--accent); color:#fff; }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(250,250,248,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-mark{
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .dot-live{
+    width:7px; height:7px;
+    border-radius:50%;
+    background:var(--live);
+    box-shadow:0 0 0 0 rgba(23,166,115,0.5);
+    animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(23,166,115,0.45); }
+    70%{ box-shadow:0 0 0 7px rgba(23,166,115,0); }
+    100%{ box-shadow:0 0 0 0 rgba(23,166,115,0); }
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  .nav-links a{ transition:color .2s ease; }
+  .nav-links a:hover{ color:var(--accent); }
+
+  @media (max-width:640px){
+    .nav-links{ gap:16px; font-size:12.5px; }
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:168px 0 96px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--accent);
+    letter-spacing:0.02em;
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:20px; height:1px;
+    background:var(--accent);
+  }
+  h1.name{
+    font-family:var(--display);
+    font-size:clamp(42px, 7vw, 68px);
+    font-weight:600;
+    line-height:1.04;
+    letter-spacing:-0.02em;
+    margin-bottom:20px;
+  }
+  .role{
+    font-family:var(--display);
+    font-size:clamp(18px, 2.4vw, 23px);
+    font-weight:500;
+    color:var(--ink-soft);
+    margin-bottom:28px;
+  }
+  .role span{ color:var(--ink); }
+  .hero-desc{
+    max-width:520px;
+    font-size:15.5px;
+    color:var(--ink-soft);
+    margin-bottom:36px;
+  }
+  .hero-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:11px 18px;
+    border-radius:7px;
+    border:1px solid var(--line);
+    background:var(--bg-raised);
+    transition:all .2s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn:hover{
+    border-color:var(--accent);
+    color:var(--accent);
+    transform:translateY(-1px);
+  }
+  .btn.primary{
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+  .btn.primary:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{
+    padding:88px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:44px;
+  }
+  .section-title{
+    font-family:var(--display);
+    font-size:26px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .section-index{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-row{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:28px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .exp-row:last-child{ border-bottom:none; }
+  .exp-date{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding-top:3px;
+  }
+  .exp-role{
+    font-family:var(--display);
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:4px;
+  }
+  .exp-org{ color:var(--accent); font-weight:500; }
+  .exp-desc{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-top:8px;
+    max-width:560px;
+  }
+
+  @media (max-width:640px){
+    .exp-row{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  /* ---------- PROJECTS (service-card motif) ---------- */
+  .project{
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:28px 30px;
+    margin-bottom:18px;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .project:hover{
+    border-color:var(--accent);
+    box-shadow:0 8px 28px -14px rgba(61,90,254,0.28);
+  }
+  .project-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:6px;
+    gap:16px;
+  }
+  .project-name{
+    font-family:var(--display);
+    font-size:19px;
+    font-weight:600;
+  }
+  .status{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--live);
+    background:rgba(23,166,115,0.09);
+    border:1px solid rgba(23,166,115,0.25);
+    padding:4px 9px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .status .d{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--live);
+  }
+  .project-meta{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+  }
+  .project ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .project li{
+    font-size:14px;
+    color:var(--ink-soft);
+    padding-left:16px;
+    position:relative;
+  }
+  .project li::before{
+    content:"";
+    position:absolute;
+    left:0; top:9px;
+    width:5px; height:5px;
+    background:var(--accent);
+    border-radius:1px;
+  }
+  .stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:7px;
+  }
+  .stack span{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    background:var(--accent-soft);
+    border-radius:5px;
+    padding:4px 8px;
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:28px 40px;
+  }
+  .skill-group h4{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin-bottom:12px;
+  }
+  .skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .skill-tags span{
+    font-size:13.5px;
+    padding:6px 12px;
+    border:1px solid var(--line);
+    border-radius:7px;
+    background:var(--bg-raised);
+  }
+  @media (max-width:640px){
+    .skills-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- LEADERSHIP / ACHIEVEMENTS ---------- */
+  .grid-2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .subhead{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin-bottom:16px;
+  }
+  .item{
+    margin-bottom:20px;
+  }
+  .item-title{
+    font-weight:600;
+    font-size:14.5px;
+    margin-bottom:4px;
+  }
+  .item-desc{
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+  @media (max-width:640px){
+    .grid-2{ grid-template-columns:1fr; gap:8px; }
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .edu-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .edu-school{
+    font-family:var(--display);
+    font-size:19px;
+    font-weight:600;
+  }
+  .edu-detail{
+    font-size:14px;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+  .edu-cgpa{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:6px 12px;
+    border-radius:7px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:64px 0 48px;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .footer-title{
+    font-family:var(--display);
+    font-size:30px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    max-width:420px;
+    margin-bottom:12px;
+  }
+  .footer-sub{
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    font-family:var(--mono);
+    font-size:13px;
+  }
+  .footer-links a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:color .2s ease;
+  }
+  .footer-links a:hover{ color:var(--accent); }
+  .footer-bottom{
+    margin-top:56px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot-live"></span>VANSHIKA DHAWAN</div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">AVAILABLE FOR NEW OPPORTUNITIES</div>
+    <h1 class="name">Vanshika Dhawan</h1>
+    <p class="role">Full-Stack Developer & <span>Cloud Systems</span> Engineer</p>
+    <p class="hero-desc">
+      I build and deploy full-stack products end to end — from React interfaces down to
+      load-balanced infrastructure on AWS. Currently a CSE student at Symbiosis Institute
+      of Technology, Pune.
+    </p>
+    <div class="hero-links">
+      <a class="btn primary" href="mailto:vanshikadhawan38@gmail.com">Email me →</a>
+      <a class="btn" href="tel:+917668588363">+91 76685 88363</a>
+      <a class="btn" href="https://www.linkedin.com/in/vanshika-dhawan-986552296" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/VANSHIKA-2727" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <section id="experience">
+    <div class="section-head reveal">
+      <div class="section-title">Experience</div>
+      <div class="section-index">01 / role history</div>
+    </div>
+
+    <div class="exp-row reveal">
+      <div class="exp-date">Oct 2025 — Mar 2026</div>
+      <div>
+        <div class="exp-role">Full Stack Developer Intern <span class="exp-org">· Headspur Technologies</span></div>
+        <p class="exp-desc">
+          Built and customized Shopify store applications, developed backend services, and
+          integrated APIs for real-time client projects. Contributed to application scalability,
+          load balancing, and fault tolerance — improving reliability and performance across
+          business workflows.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="section-head reveal">
+      <div class="section-title">Selected Work</div>
+      <div class="section-index">02 / projects deployed</div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div class="project-name">VERQ — Student–Recruiter Platform</div>
+        <div class="status"><span class="d"></span>deployed</div>
+      </div>
+      <div class="project-meta">Jan 2025 – Apr 2025 · 3-tier placement platform</div>
+      <ul>
+        <li>Built a cloud-based platform bridging students and recruiters, with 10+ features
+          spanning placement roadmaps, recruiter dashboards, drive management, and application tracking.</li>
+        <li>Developed secure REST APIs and CRUD-based business logic for job posting,
+          application processing, and student management.</li>
+        <li>Deployed frontend and backend on separate AWS EC2 instances behind an Elastic
+          Load Balancer with Auto Scaling for improved fault tolerance.</li>
+      </ul>
+      <div class="stack">
+        <span>React.js</span><span>Node.js</span><span>Express.js</span><span>PostgreSQL</span>
+        <span>Supabase</span><span>Prisma ORM</span><span>AWS EC2</span><span>Auto Scaling</span>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div class="project-name">A/B Testing & User Behavior Analysis Platform</div>
+        <div class="status"><span class="d"></span>deployed</div>
+      </div>
+      <div class="project-meta">2025 – 2026 · analytics & experimentation</div>
+      <ul>
+        <li>Built a platform to compare UI variants using clicks, impressions, conversion
+          rates, and engagement metrics.</li>
+        <li>Applied statistical analysis and ML concepts to evaluate experiment outcomes and
+          support data-driven decisions.</li>
+        <li>Designed analytics pipelines tracking user behavior and performance across
+          Shopify applications, turning results into actionable insight.</li>
+      </ul>
+      <div class="stack">
+        <span>Shopify</span><span>Node.js</span><span>Supabase</span><span>Python</span>
+        <span>Pandas</span><span>NumPy</span><span>Scikit-learn</span><span>Matplotlib</span>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-top">
+        <div class="project-name">Alumni Connect — Fundraising Platform</div>
+        <div class="status"><span class="d"></span>deployed</div>
+      </div>
+      <div class="project-meta">Apr 2025 – Feb 2026 · microservices architecture</div>
+      <ul>
+        <li>Built a cloud-based fundraising platform for rural educational institutions on a
+          microservices architecture.</li>
+        <li>Developed independent Authentication, Profile, Donation, and Payment services
+          connected via REST APIs for scalability and maintainability.</li>
+        <li>Containerized and deployed services on AWS, supporting secure transactions and
+          reliable availability.</li>
+      </ul>
+      <div class="stack">
+        <span>React.js</span><span>Node.js</span><span>Express.js</span><span>Docker</span>
+        <span>PostgreSQL</span><span>AWS EC2</span><span>JWT Auth</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head reveal">
+      <div class="section-title">Skills</div>
+      <div class="section-index">03 / toolkit</div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span>C++</span><span>Python</span><span>JavaScript</span><span>C</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Full Stack</h4>
+        <div class="skill-tags">
+          <span>React.js</span><span>Node.js</span><span>Express.js</span><span>REST APIs</span><span>Shopify</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Databases</h4>
+        <div class="skill-tags">
+          <span>PostgreSQL</span><span>Supabase</span><span>Firebase</span><span>Prisma ORM</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud & DevOps</h4>
+        <div class="skill-tags">
+          <span>AWS EC2</span><span>S3</span><span>VPC</span><span>IAM</span><span>Load Balancer</span>
+          <span>Auto Scaling</span><span>Docker</span><span>GitHub Actions</span><span>CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Core CS</h4>
+        <div class="skill-tags">
+          <span>DSA</span><span>OOP</span><span>DBMS</span><span>OS</span><span>CN</span><span>Linux</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Professional</h4>
+        <div class="skill-tags">
+          <span>Leadership</span><span>Problem Solving</span><span>Communication</span><span>Ownership</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="leadership">
+    <div class="section-head reveal">
+      <div class="section-title">Leadership & Achievements</div>
+      <div class="section-index">04 / beyond code</div>
+    </div>
+    <div class="grid-2 reveal">
+      <div>
+        <div class="subhead">Leadership & Volunteering</div>
+        <div class="item">
+          <div class="item-title">Student Placement Cell Volunteer</div>
+          <div class="item-desc">Apr 2025 – Jan 2026 · Managed placement activities for 1,000+
+            students, coordinating drives across recruiters, students, and faculty.</div>
+        </div>
+        <div class="item">
+          <div class="item-title">Volunteer — ISKCON Alumni Connect Platform</div>
+          <div class="item-desc">Apr 2025 – Jan 2026 · Collaborated with 25+ schools and colleges
+            to gather requirements and design fundraising solutions rooted in community needs.</div>
+        </div>
+        <div class="item">
+          <div class="item-title">Non-Tech Head — Cybersecurity & Blockchain Club</div>
+        </div>
+        <div class="item">
+          <div class="item-title">Design Head — Symbitech</div>
+        </div>
+      </div>
+      <div>
+        <div class="subhead">Achievements</div>
+        <div class="item">
+          <div class="item-title">Smt. Usha Kumari Distinction Award</div>
+          <div class="item-desc">Awarded for 90%+ marks in both Class X and XII, along with a
+            cash scholarship for academic excellence.</div>
+        </div>
+        <div class="item">
+          <div class="item-title">267+ DSA Problems Solved on LeetCode</div>
+          <div class="item-desc">Using C++ — strengthening problem-solving across arrays,
+            trees, graphs, dynamic programming, greedy algorithms, and binary search.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head reveal">
+      <div class="section-title">Education</div>
+      <div class="section-index">05 / academics</div>
+    </div>
+    <div class="reveal">
+      <div class="edu-row">
+        <div class="edu-school">Symbiosis Institute of Technology, Pune</div>
+        <div class="edu-cgpa">CGPA 7.91</div>
+      </div>
+      <div class="edu-detail">B.Tech, Computer Science & Engineering · 2023 – Present</div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-inner reveal">
+      <div>
+        <div class="footer-title">Let's build something reliable together.</div>
+        <div class="footer-sub">Open to full-stack & cloud engineering roles.</div>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:vanshikadhawan38@gmail.com">↳ vanshikadhawan38@gmail.com</a>
+        <a href="tel:+917668588363">↳ +91 76685 88363</a>
+        <a href="https://www.linkedin.com/in/vanshika-dhawan-986552296" target="_blank" rel="noopener">↳ LinkedIn</a>
+        <a href="https://github.com/VANSHIKA-2727" target="_blank" rel="noopener">↳ GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Vanshika Dhawan</span>
+      <span>Built with care in Pune, India</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.12 });
+  revealEls.forEach(el=>io.observe(el));
+
+  // Respect reduced motion
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    revealEls.forEach(el=>el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
